@@ -2,10 +2,8 @@
 
 ## 网站
 
-* [github . huihut/note/STL.md](https://github.com/huihut/note/blob/master/STL.md)
 * [cplusplus . stl](http://www.cplusplus.com/reference/stl/)
 * [cppreference . C++ 参考手册](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
-* [CSDN专栏：STL学习笔记](http://blog.csdn.net/column/details/geek-stl.html)
 
 ## 组成
 
@@ -45,7 +43,7 @@ template < class T, size_t N > class array;
 
 返回指向数组容器中第一个元素的迭代器。
 
-![](https://i.stack.imgur.com/oa3EQ.png)
+![](../images/array_.png)
 
 ```cpp
       iterator begin() noexcept;
@@ -2061,7 +2059,7 @@ mylist contains: 19 77 2 16
 map 是关联容器，按照特定顺序存储由 key value (键值) 和 mapped value (映射值) 组合形成的元素。
 
 在映射中，键值通常用于对元素进行排序和唯一标识，而映射的值存储与此键关联的内容。该类型的键和映射的值可能不同，并且在部件类型被分组在一起VALUE_TYPE，这是一种对类型结合两种：
- 
+
 ```cpp
 typedef pair<const Key, T> value_type;
 ```
