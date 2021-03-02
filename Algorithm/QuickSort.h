@@ -94,7 +94,7 @@ void quick_sort(T arr[], const int len) {
         int left = range.start, right = range.end - 1;
         while (left < right) {
             while (arr[left] < mid && left < right) left++;
-            while (arr[right] >= mid && left < right) right--;
+            while (arr[right] >= mid && left <     ) right--;
             std::swap(arr[left], arr[right]);
         }
         if (arr[left] >= arr[range.end])
