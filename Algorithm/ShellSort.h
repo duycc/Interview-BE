@@ -12,13 +12,10 @@ void shellSort(std::vector<T>& vec)
         for (int i = gap; i < size; i++) {
             int j = i;
             while (j - gap >= 0) {
-                if (vec[j - gap] > vec[i]) {
-                    std::swap(vec[j - gap], vec[j]);
-                    j -= gap;
-                }
-                else {
-                    break;
-                }
+                if (vec[j - gap] <= vec[j])  break;
+
+                std::swap(vec[j - gap], vec[j]);
+                j -= gap;
             }
         }
         gap /= 3;

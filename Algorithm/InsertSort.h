@@ -16,18 +16,13 @@
 // 插入排序
 void insertSort(std::vector<int>& vec)
 {
-	size_t len = vec.size();
-	for (size_t i = 1; i < len; ++i) {
-		for (size_t j = i; j > 0; --j)
-		{
-			if (vec[j - 1] > vec[j]) {
-				std::swap(vec[j - 1], vec[j]);
-			}
-			else {
-				break;
-			}
-		}
-	}
+    size_t len = vec.size();
+    for (size_t i = 1; i < len; ++i) {
+        for (size_t j = i; j > 0; --j) {
+            if (vec[j - 1] <= vec[j]) break;
+            std::swap(vec[j - 1], vec[j]);
+        }
+    }
 
-	return;
+    return;
 }
