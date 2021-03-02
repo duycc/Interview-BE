@@ -1,71 +1,47 @@
-// 斐波那契查找
 
-#include "stdafx.h"
-#include <memory>
-#include  <iostream>
-using namespace std;
+const int FIBO_MAX_SIZE = 20;
 
-const int max_size=20;//斐波那契数组的长度
-
-/*构造一个斐波那契数组*/ 
-void Fibonacci(int * F)
+template <typename T>
+int fibonacciSearch(std::vector<T>& vec, T key, int low, int high)
 {
-    F[0]=0;
-    F[1]=1;
-    for(int i=2;i<max_size;++i)
-        F[i]=F[i-1]+F[i-2];
-}
-
-/*定义斐波那契查找法*/  
-int FibonacciSearch(int *a, int n, int key)  //a为要查找的数组,n为要查找的数组长度,key为要查找的关键字
-{
-  int low=0;
-  int high=n-1;
-  
-  int F[max_size];
-  Fibonacci(F);//构造一个斐波那契数组F 
-
-  int k=0;
-  while(n>F[k]-1)//计算n位于斐波那契数列的位置
-      ++k;
-
-  int  * temp;//将数组a扩展到F[k]-1的长度
-  temp=new int [F[k]-1];
-  memcpy(temp,a,n*sizeof(int));
-
-  for(int i=n;i<F[k]-1;++i)
-     temp[i]=a[n-1];
-  
-  while(low<=high)
-  {
-    int mid=low+F[k-1]-1;
-    if(key<temp[mid])
-    {
-      high=mid-1;
-      k-=1;
+    int len = vec.size();
+    // 1. 构建fibonacci数列
+    std::vector<int> fiboArr(FIBO_MAX_SIZE, 0);
+    fiboArr[1] = 1;
+    for (int i = 2; i < FIBO_MAX_SIZE; ++i) {
+        fiboArr[i] = fiboArr[i - 2] + fiboArr[i - 1];
     }
-    else if(key>temp[mid])
-    {
-     low=mid+1;
-     k-=2;
-    }
-    else
-    {
-       if(mid<n)
-           return mid; //若相等则说明mid即为查找到的位置
-       else
-           return n-1; //若mid>=n则说明是扩展的数值,返回n-1
-    }
-  }  
-  delete [] temp;
-  return -1;
-}
 
-int main()
-{
-    int a[] = {0,16,24,35,47,59,62,73,88,99};
-    int key=100;
-    int index=FibonacciSearch(a,sizeof(a)/sizeof(int),key);
-    cout<<key<<" is located at:"<<index;
-    return 0;
+    // 2. 计算数据长度对应fibonacci数列元素
+    int index = 0;
+    while (fiboArr[index] <= len) { 
+        index++;
+    }
+    
+    // 3. 最大值填充元素
+    for (int i = len; i < fiboArr[index] - 1; ++i) {
+        vec.push_back(vec.back());
+    }
+
+    // 4. 开始查找
+    while (low <= high) {
+        int mid = low + fiboArr[--index] - 1;
+        if (vec[mid] == key) {
+            if (mid < len) {
+                return mid;		// 查找成功
+            }
+            else {
+                return len - 1;	// 补充元素
+            }
+        }
+        else if (vec[mid] > key) {
+            high = mid - 1;
+            index = index - 1;
+        }
+        else {
+            low = mid + 1;
+            index = index - 2;
+        }
+    }
+    return -1;
 }

@@ -1,37 +1,48 @@
+
 // 二分查找（折半查找）：对于已排序，若无序，需要先排序
 
-// 非递归
+/**************
+    递归版
+**************/
+template <typename T>
+int binary_search_recursive(std::vector<T>& vec, T& key, int low, int high)
+{
+    if (low > high) return -1;
 
-int BinarySearch(vector<int> v, int value , int low, int high) {
-	if (v.size() <= 0) {
-		return -1;
-	}
-	while (low <= high) {
-		int mid = low + (high - low) / 2;
-		if (v[mid] == value) {
-			return mid;
-		}
-		else if (v[mid] > value) {
-			high = mid - 1;
-		}
-		else {
-			low = mid + 1;
-		}
-	}
+    int mid = (high - low) / 2 + low;
 
-	return -1;
+    if (vec[mid] == key) return mid;
+    else if (vec[mid] > key) {
+        return binary_search_recursive(vec, key, low, mid - 1);
+    }
+    else {
+        return binary_search_recursive(vec, key, mid + 1, high);
+    }
+
+    return -1;
 }
 
-// 递归
-int BinarySearch2(vector<int> v, int value, int low, int high)
+
+/**************
+    迭代版
+**************/
+template <typename T>
+int binary_search_iter(std::vector<T>& vec, T key, int low, int high)
 {
-	if (low > high)
-		return -1;
-	int mid = low + (high - low) / 2;
-	if (v[mid] == value)
-		return mid;
-	else if (v[mid] > value)
-		return BinarySearch2(v, value, low, mid - 1);
-	else
-		return BinarySearch2(v, value, mid + 1, high);
+    if (vec.empty()) return -1;
+
+    while (low <= high) {
+        int mid = (high - low) / 2 + low;
+        if (vec[mid] == key) {
+            return mid;
+        }
+        else if (vec[mid] > key) {
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
 }
