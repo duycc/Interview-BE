@@ -43,7 +43,7 @@ template < class T, size_t N > class array;
 
 返回指向数组容器中第一个元素的迭代器。
 
-![](../images/array_.png)
+![](../images/array_.png?raw=true)
 
 ```cpp
       iterator begin() noexcept;
