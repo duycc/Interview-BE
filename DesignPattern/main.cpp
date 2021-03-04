@@ -1,42 +1,52 @@
-//
-// Created by xiemenghui on 2018/7/20.
-//
 
-#include <iostream>
-#include "SingletonPattern/SingletonMain.h"
-#include "AbstractFactoryPattern/FactoryMain.h"
-#include "AdapterPattern/AdapterMain.h"
-#include "BridgePattern/BridgeMain.h"
-#include "ObserverPattern/ObserverMain.h"
+/*------------------------------------------------------------/
+ * @file	
+ * @brief	disign-pattern
+ *
+ * @author 	DuYong
+ * @date	2021-3-4
+ *-----------------------------------------------------------*/
 
-int main() {
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Design pattern example **" << std::endl;
-    std::cout << "*******************" << std::endl;
+#include "singleton.h"
 
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Singleton mode **" << std::endl;
-    std::cout << "*******************" << std::endl;
-    SingletonMain();
+void designPatternTest()
+{
+	singletonTest();
 
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Abstract factory pattern **" << std::endl;
-    std::cout << "*******************" << std::endl;
-    FactoryMain();
-    
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Adapter mode **" << std::endl;
-    std::cout << "*******************" << std::endl;
-    AdapterMain();
+	return;
+}
 
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Bridge mode **" << std::endl;
-    std::cout << "*******************" << std::endl;
-    
-    std::cout << "*******************" << std::endl;
-    std::cout << "** Observer mode **" << std::endl;
-    std::cout << "*******************" << std::endl;
-    ObserverMain();
+int main() 
+{
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Design pattern example **" << std::endl;
+    //std::cout << "*******************" << std::endl;
 
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Singleton mode **" << std::endl;
+    //std::cout << "*******************" << std::endl;
+    //// SingletonMain();
+
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Abstract factory pattern **" << std::endl;
+    //std::cout << "*******************" << std::endl;
+    //// FactoryMain();
+    //
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Adapter mode **" << std::endl;
+    //std::cout << "*******************" << std::endl;
+    //// AdapterMain();
+
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Bridge mode **" << std::endl;
+    //std::cout << "*******************" << std::endl;
+    //
+    //std::cout << "*******************" << std::endl;
+    //std::cout << "** Observer mode **" << std::endl;
+    //std::cout << "*******************" << std::endl;
+    //// ObserverMain();
+	designPatternTest();
+
+	system("pause");
     return 0;
 }
