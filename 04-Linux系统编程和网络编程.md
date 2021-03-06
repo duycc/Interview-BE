@@ -67,3 +67,6 @@ ssize_t write(int fd, const void *buf, size_t count);
 4. 接收到这个 FIN 的源发送端 TCP 对它进行确认。
 
 这样每个方向上都有一个 FIN 和 ACK。
+
+### I/O复用
+

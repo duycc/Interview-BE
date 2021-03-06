@@ -8,7 +8,7 @@ todo:
 	测试线程安全
 */
 
-#if 0
+#if 1
 class Singleton {
 	// 1. 饿汉模式，线程安全的
 private:
@@ -29,7 +29,7 @@ public:
 };
 #endif
 
-#if 0
+#if 1
 class Singleton {
 // 2. 懒汉模式
 private:
@@ -70,7 +70,7 @@ public:
 				m_instance = new Singleton();
 				static GC gc;
 			}
-			// pthread_mutex_lock(&mutex);
+			// pthread_mutex_unlock(&mutex);
 		}
 		return m_instance;
 	}
