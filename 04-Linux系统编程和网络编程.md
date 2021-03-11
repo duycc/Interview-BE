@@ -8,7 +8,7 @@
 
 ### Socket通信机制
 
-![Socket 客户端服务器通讯](images/socket客户端服务器通讯.jpg?raw=true)
+![Socket 客户端服务器通讯](https://gitee.com/duycc/picgo/raw/master/20210311185456.jpg)
 
 
 #### Socket 中的 read()、write() 函数
@@ -44,7 +44,7 @@ ssize_t write(int fd, const void *buf, size_t count);
 
 只有就完了三次握手，但是这个三次握手发生在 Socket 的那几个函数中呢？请看下图：
 
-![socket 中发送的 TCP 三次握手](http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157467258.png)
+![socket 中发送的 TCP 三次握手](https://gitee.com/duycc/picgo/raw/master/20210311185506.png)
 
 从图中可以看出：
 
@@ -57,7 +57,7 @@ ssize_t write(int fd, const void *buf, size_t count);
 
 上面介绍了 socket 中 TCP 的三次握手建立过程，及其涉及的 socket 函数。现在我们介绍 socket 中的四次握手释放连接的过程，请看下图：
 
-![socket 中发送的 TCP 四次握手](http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157487616.png)
+![socket 中发送的 TCP 四次握手](https://gitee.com/duycc/picgo/raw/master/20210311185513.png)
 
 图示过程如下：
 
