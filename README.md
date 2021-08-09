@@ -15,7 +15,7 @@
 
 ## Ⅶ、[设计模式](07-设计模式.md)
 
-## Ⅷ、[LeetCode](https://github.com/duycc/leetcode)
+## Ⅷ、[LeetCode](https://gitee.com/duycc/leetcode)
 
 
 
