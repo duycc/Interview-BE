@@ -59,5 +59,98 @@
 
 19. 一些其它问题记不太清了，我的项目一个也没问，因为公司是做C和C++代码的检测工具的，所以需要对C++语言基础和新特性有比较深的了解，对于linux网络编程和系统编程都没怎么问
 
-### 02、xxx
+### 02、[蓝湖](https://lanhuapp.com/)
 
+```
+2021-9-27 19:30 ~ 20:30
+```
+
+**算法题：**
+
+* 判断一组矩形是否同轴，即矩阵中心坐标是否在同一坐标线上，x同轴或y同轴都返回true
+
+  很简单一道题，但是最后代码没写好，跟面试官沟通后不能第一遍求出各矩形坐标中心再判断；也不允许两次循环，第一次判断x轴，第二次再判断y轴；最后考虑使用标志位，但是代码写的还是有问题：
+
+  * 求矩阵中心点时不能除以2，因为(2, 2)和(2, 3)并不同轴；
+
+  最后修改过的代码：
+
+  ```cpp
+  /**
+   * @file     isCoaxial.cpp
+   * @brief
+   * @author   YongDu
+   * @date     2021-09-27
+   */
+  
+  #include <iostream>
+  #include <vector>
+  
+  struct Rectangle {
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+  
+    Rectangle(int _x1, int _y1, int _x2, int _y2) : x1(_x1), y1(_y1), x2(_x2), y2(_y2) {}
+  };
+  
+  bool isCoaxial(const std::vector<Rectangle *> &rectangles) {
+    if (rectangles.empty()) {
+      return false;
+    }
+  
+    int preX = rectangles[0]->x1 + rectangles[0]->x2;
+    int preY = rectangles[0]->y1 + rectangles[0]->y2;
+  
+    bool xCoaxial{true};
+    bool yCoaxial{true};
+  
+    for (int i = 1; i < rectangles.size(); ++i) {
+      int curX = rectangles[i]->x1 + rectangles[i]->x2;
+      int curY = rectangles[i]->y1 + rectangles[i]->y2;
+  
+      if (curX != preX) {
+        xCoaxial = false;
+      }
+      if (curY != preY) {
+        yCoaxial = false;
+      }
+      if (!xCoaxial && !xCoaxial) {
+        return false;
+      }
+  
+      preX = curX;
+      preY = curY;
+    }
+    return true;
+  }
+  
+  int main() {
+    std::vector<Rectangle *> rectangles;
+    rectangles.emplace_back(new Rectangle(0, 0, 5, 5));
+    rectangles.emplace_back(new Rectangle(-3, 4, 8, -2));
+    std::cout << isCoaxial(rectangles) << std::endl;
+  
+    return 0;
+  }
+  ```
+
+* k个长度为N的链表合并，口述方法并分析事件复杂度
+
+  这道题以前做过，也知道代码怎么写，但是时间复杂度没认真分析过，自己分析了`kNlgN`，面试官没说啥，估计失望了都，后来查了是`Nlgk`，自己也是平时不注意这些细节，感觉不太好。
+
+**C++相关：**
+
+* C++多态的理解
+* C++的内存模型，堆栈的区别
+* 。。。？已经没有然后了
+
+**其它：**
+
+* 第一份实习为什么去做代码静态分析，这段实习最大的收获是什么
+* 其它一些比较杂七杂八的问题
+
+**总结：**
+
+这次面试感觉不太好，第一，算法题还是不够熟练，平时不注意思考问题，只是记了代码模板；第二，基本的知识点都知道，也有一定的理解，但是想把你所了解的东西完整且清晰地传达给面试官也是非常重要的，这体现了沟通能力，也直接影响工作能力，而自己这方面的能力明显有所欠缺。
