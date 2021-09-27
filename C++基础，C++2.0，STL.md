@@ -1,96 +1,94 @@
-# C++基础，C++2.0，STL
+***
 
-## 一、C++基础
+### 一、C++基础
 
-### const
+***
+
+#### const
 
 **作用：**
 
-1. 修饰变量，说明该变量不可以被改变；
-2. 修饰指针，分为指向常量的指针（pointer to const）和自身是常量的指针（常量指针，const pointer）；
-3. 修饰引用，指向常量的引用（reference to const），用于形参类型，即避免了拷贝，又避免了函数对值的修改；
-4. 修饰成员函数，说明该成员函数内不能修改成员变量。
+- 修饰变量，说明该变量不可以被改变
+- 修饰指针，分为指向常量的指针（pointer to const）和自身是常量的指针（常量指针，const pointer）
+- 修饰引用，指向常量的引用（reference to const），用于形参类型，即避免了拷贝，又避免了函数对值的修改
+- 修饰成员函数，说明该成员函数内不能修改成员变量
 
 **示例代码：**
 
 ```cpp
-class A
-{
+class A {
 private:
-    const int a;                // 常对象成员，只能在初始化列表赋值
+  const int a; // 常对象成员，只能在初始化列表赋值
 
 public:
-    // 构造函数
-    A() : a(0) { };
-    A(int x) : a(x) { };        // 初始化列表
+  // 构造函数
+  A() : a(0){};
+  A(int x) : a(x){}; // 初始化列表
 
-    // const可用于对重载函数的区分
-    int getValue();             // 普通成员函数，只能被非const对象访问
-    int getValue() const;       // 常成员函数，不得修改类中的任何数据成员的值
+  // const可用于对重载函数的区分
+  int getValue();       // 普通成员函数，只能被非const对象访问
+  int getValue() const; // 常成员函数，不得修改类中的任何数据成员的值
 };
 
-void function()
-{
-    // 对象
-    A b;                        // 普通对象，可以调用全部成员函数、更新常成员变量
-    const A a;                  // 常对象，可调用常成员函数，也可调用非常成员函数
-    const A *p = &a;            // 指针变量，指向常对象
-    const A &q = a;             // 指向常对象的引用
+void function() {
+  // 对象
+  A b;             // 普通对象，可以调用全部成员函数、更新常成员变量
+  const A a;       // 常对象，可调用常成员函数，也可调用非常成员函数
+  const A *p = &a; // 指针变量，指向常对象
+  const A &q = a;  // 指向常对象的引用
 
-    // 指针
-    char greeting[] = "Hello";
-    char* p1 = greeting;                // 指针变量，指向字符数组变量
-    const char* p2 = greeting;          // 指针变量，指向字符数组常量（const 后面是 char，说明指向的字符（char）不可改变）
-    char* const p3 = greeting;          // 自身是常量的指针，指向字符数组变量（const 后面是 p3，说明 p3 指针自身不可改变）
-    const char* const p4 = greeting;    // 自身是常量的指针，指向字符数组常量
+  // 指针
+  char greeting[] = "Hello";
+  char *p1 = greeting; // 指针变量，指向字符数组变量
+  const char *p2 = greeting; // 指针变量，指向字符数组常量（const 后面是 char，说明指向的字符（char）不可改变）
+  char *const p3 = greeting; // 自身是常量的指针，指向字符数组变量（const 后面是 p3，说明 p3 指针自身不可改变）
+  const char *const p4 = greeting; // 自身是常量的指针，指向字符数组常量
 }
 
 // 函数
-void function1(const int Var);           // 传递过来的参数在函数内不可变
-void function2(const char* Var);         // 参数指针所指内容为常量
-void function3(char* const Var);         // 参数指针为常量
-void function4(const int& Var);          // 引用参数在函数内为常量
+void function1(const int Var);   // 传递过来的参数在函数内不可变
+void function2(const char *Var); // 参数指针所指内容为常量
+void function3(char *const Var); // 参数指针为常量
+void function4(const int &Var);  // 引用参数在函数内为常量
 
 // 函数返回值
-const int function5();      // 返回一个常数
-const int* function6();     // 返回一个指向常量的指针变量，使用：const int *p = function6();
-int* const function7();     // 返回一个指向变量的常指针，使用：int* const p = function7();
+const int function5();  // 返回一个常数
+const int *function6(); // 返回一个指向常量的指针变量，使用：const int *p = function6();
+int *const function7(); // 返回一个指向变量的常指针，使用：int* const p = function7();
 ```
 
-### static
+#### static
 
-1. 修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。
-2. 修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为 static。
-3. 修饰成员变量，修饰成员变量使所有的对象只保存一个该变量，而且不需要生成对象就可以访问该成员。
-4. 修饰成员函数，修饰成员函数使得不需要生成对象就可以访问该函数，但是在 static 函数内不能访问非静态成员。
+- 修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它
+- 修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为 static
+- 修饰成员变量，修饰成员变量使所有的对象只保存一个该变量，而且不需要生成对象就可以访问该成员
+- 修饰成员函数，修饰成员函数使得不需要生成对象就可以访问该函数，但是在 static 函数内不能访问非静态成员
 
-**静态变量什么时候初始化**
+**静态变量什么时候初始化：**
 
-* 初始化只有一次，但是可以多次赋值，在主程序之前，编译器已经为其分配好了内存。
+* 初始化只有一次，但是可以多次赋值，在主程序之前，编译器已经为其分配好了内存
 
-* 静态局部变量和全局变量一样，数据都存放在全局区域，所以在主程序之前，编译器已经为其分配好了内存，但在C和C++中静态局部变量的初始化节点又有点不太一样。在C中，初始化发生在代码执行之前，编译阶段分配好内存之后，就会进行初始化，所以我们看到在C语言中无法使用变量对静态局部变量进行初始化，在程序运行结束，变量所处的全局内存会被全部回收。
+* 静态局部变量和全局变量一样，数据都存放在全局区域，所以在主程序之前，编译器已经为其分配好了内存，但在C和C++中静态局部变量的初始化节点又有点不太一样。在C中，初始化发生在代码执行之前，编译阶段分配好内存之后，就会进行初始化，所以我们看到在C语言中无法使用变量对静态局部变量进行初始化，在程序运行结束，变量所处的全局内存会被全部回收
 
-* 而在C++中，==初始化时在执行相关代码时才会进行初始化==，主要是由于C++引入对象后，要进行初始化必须执行相应构造函数和析构函数，在构造函数或析构函数中经常会需要进行某些程序中需要进行的特定操作，并非简单地分配内存。所以C++标准定为全局或静态对象是有首次用到时才会进行构造，并通过atexit()来管理。在程序结束，按照构造顺序反方向进行逐个析构。所以在C++中是可以使用变量对静态局部变量进行初始化的。
+* 而在C++中，初始化时在执行相关代码时才会进行初始化，主要是由于C++引入对象后，要进行初始化必须执行相应构造函数和析构函数，在构造函数或析构函数中经常会需要进行某些程序中需要进行的特定操作，并非简单地分配内存。所以C++标准定为全局或静态对象是有首次用到时才会进行构造，并通过atexit()来管理。在程序结束，按照构造顺序反方向进行逐个析构。所以在C++中是可以使用变量对静态局部变量进行初始化的
 
-### this指针
+#### this
 
-1. `this` 指针是一个隐含于每一个非静态成员函数中的特殊指针。它指向调用该成员函数的那个对象。
-2. 当对一个对象调用成员函数时，编译程序先将对象的地址赋给 `this` 指针，然后调用成员函数，每次成员函数存取数据成员时，都隐式使用 `this` 指针。
-3. 当一个成员函数被调用时，自动向它传递一个隐含的参数，该参数是一个指向这个成员函数所在的对象的指针。
-4. `this` 指针被隐含地声明为: `ClassName *const this`，这意味着不能给 `this` 指针赋值；在 `ClassName` 类的 `const` 成员函数中，`this` 指针的类型为：`const ClassName* const`，这说明不能对 `this` 指针所指向的这种对象是不可修改的（即不能对这种对象的数据成员进行赋值操作）；
-5. `this` 并不是一个常规变量，而是个右值，所以不能取得 `this` 的地址（不能 `&this`）。
-6. 在以下场景中，经常需要显式引用 `this` 指针：
-   1. 为实现对象的链式引用；
-   2. 为避免对同一对象进行赋值操作；
-   3. 在实现一些数据结构时，如 `list`。
+- `this` 指针是一个隐含于每一个非静态成员函数中的特殊指针。它指向调用该成员函数的那个对象
+- 当对一个对象调用成员函数时，编译程序先将对象的地址赋给 `this` 指针，然后调用成员函数，每次成员函数存取数据成员时，都隐式使用 `this` 指针
+- 当一个成员函数被调用时，自动向它传递一个隐含的参数，该参数是一个指向这个成员函数所在的对象的指针
+- `this` 指针被隐含地声明为: `ClassName *const this`，这意味着不能给 `this` 指针赋值；在 `ClassName` 类的 `const` 成员函数中，`this` 指针的类型为：`const ClassName* const`，这说明不能对 `this` 指针所指向的这种对象是不可修改的（即不能对这种对象的数据成员进行赋值操作）
+- `this` 并不是一个常规变量，而是个右值，所以不能取得 `this` 的地址（不能 `&this`）
+- 在以下场景中，经常需要显式引用 `this` 指针：
+   - 为实现对象的链式引用
+   - 为避免对同一对象进行赋值操作
+   - 在实现一些数据结构时，如 `list`
 
 **几个this指针的易混问题：**
 
 **A. this指针是什么时候创建的？**
 
-this在成员函数的开始执行前构造，在成员的执行结束后清除。
-
-但是如果class或者struct里面没有方法的话，它们是没有构造函数的，只能当做C的struct使用。采用TYPE xx的方式定义的话，在栈里分配内存，这时候this指针的值就是这块内存的地址。采用new的方式创建对象的话，在堆里分配内存，new操作符通过eax（累加寄存器）返回分配的地址，然后设置给指针变量。之后去调用构造函数（如果有构造函数的话），这时将这个内存块的地址传给ecx，之后构造函数里面进行处理
+this在成员函数的开始执行前构造，在成员的执行结束后清除
 
 **B. this指针存放在何处？堆、栈、全局变量，还是其他？**
 
@@ -118,46 +116,47 @@ this是类的指针，如果换成结构体，那this就是结构的指针了。
 
 普通的类函数（不论是成员函数，还是静态函数）都不会创建一个函数表来保存函数指针。只有虚函数才会被放到函数表中。但是，即使是虚函数，如果编译期就能明确知道调用的是哪个函数，编译器就不会通过函数表中的指针来间接调用，而是会直接调用该函数。正是由于this指针的存在，用来指向不同的对象，从而确保不同对象之间调用相同的函数可以互不干扰
 
-### inline内联函数
+#### inline
 
 **特点：**
 
-* 相当于把内联函数里面的内容写在调用内联函数处；
-* 相当于不用执行进入函数的步骤，直接执行函数体；
-* 相当于宏，却比宏多了类型检查，真正具有函数特性；
-* 编译器一般不内联包含循环、递归、switch 等复杂操作的内联函数；
-* 在类声明中定义的函数，除了虚函数的其他函数都会自动隐式地当成内联函数。
+* 相当于把内联函数里面的内容写在调用内联函数处
+* 相当于不用执行进入函数的步骤，直接执行函数体
+* 相当于宏，却比宏多了类型检查，真正具有函数特性
+* 编译器一般不内联包含循环、递归、switch 等复杂操作的内联函数
+* 在类声明中定义的函数，除了虚函数的其他函数都会自动隐式地当成内联函数
 
 **使用：**
 
 ```cpp
 // 声明1（加 inline，建议使用）
-inline int functionName(int first, int second,...);
+inline int functionName(int first, int second, ...);
 
 // 声明2（不加 inline）
-int functionName(int first, int second,...);
+int functionName(int first, int second, ...);
 
 // 定义
-inline int functionName(int first, int second,...) {/****/};
+inline int functionName(int first, int second, ...){/****/};
 
 // 类内定义，隐式内联
 class A {
-    int doA() { return 0; }         // 隐式内联
+  int doA() { return 0; } // 隐式内联
 }
 
 // 类外定义，需要显式内联
 class A {
-    int doA();
-}
-inline int A::doA() { return 0; }   // 需要显式内联
+  int doA();
+};
+
+inline int A::doA() { return 0; } // 需要显式内联
 ```
 
 **编译器对内联函数的处理：**
 
-1. 将 inline 函数体复制到 inline 函数调用点处； 
-2. 为所用 inline 函数中的局部变量分配内存空间； 
-3. 将 inline 函数的的输入参数和返回值映射到调用方法的局部变量空间中； 
-4. 如果 inline 函数有多个返回点，将其转变为 inline 函数代码块末尾的分支（使用 GOTO）。
+- 将 inline 函数体复制到 inline 函数调用点处 
+- 为所用 inline 函数中的局部变量分配内存空间
+- 将 inline 函数的的输入参数和返回值映射到调用方法的局部变量空间中
+- 如果 inline 函数有多个返回点，将其转变为 inline 函数代码块末尾的分支（使用 GOTO）
 
 **优缺点：**
 
@@ -181,48 +180,46 @@ inline int A::doA() { return 0; }   // 需要显式内联
 * `inline virtual` 唯一可以内联的时候是：编译器知道所调用的对象是哪个类（如 `Base::who()`），这只有在编译器具有实际对象而不是对象的指针或引用时才会发生。
 
 ```cpp
-#include <iostream>  
+#include <iostream>
 using namespace std;
-class Base
-{
+
+class Base {
 public:
-	inline virtual void who()
-	{
-		cout << "I am Base\n";
-	}
-	virtual ~Base() {}
-};
-class Derived : public Base
-{
-public:
-	inline void who()  // 不写inline时隐式内联
-	{
-		cout << "I am Derived\n";
-	}
+  inline virtual void who() { cout << "I am Base\n"; }
+  virtual ~Base() {}
 };
 
-int main()
-{
-	// 此处的虚函数 who()，是通过类（Base）的具体对象（b）来调用的，编译期间就能确定了，所以它可以是内联的，但最终是否内联取决于编译器。 
-	Base b;
-	b.who();
+class Derived : public Base {
+public:
+  inline void who() {
+    // 不写inline时隐式内联
+    cout << "I am Derived\n";
+  }
+};
 
-	// 此处的虚函数是通过指针调用的，呈现多态性，需要在运行时期间才能确定，所以不能为内联。  
-	Base *ptr = new Derived();
-	ptr->who();
+int main() {
+  // 此处的虚函数
+  // who()，是通过类（Base）的具体对象（b）来调用的，编译期间就能确定了，所以它可以是内联的，但最终是否内联取决于编译器。
+  Base b;
+  b.who();
 
-	// 因为Base有虚析构函数（virtual ~Base() {}），所以 delete 时，会先调用派生类（Derived）析构函数，再调用基类（Base）析构函数，防止内存泄漏。
-	delete ptr;
-	ptr = nullptr;
+  // 此处的虚函数是通过指针调用的，呈现多态性，需要在运行时期间才能确定，所以不能为内联。
+  Base *ptr = new Derived();
+  ptr->who();
 
-	system("pause");
-	return 0;
-} 
+  // 因为Base有虚析构函数（virtual ~Base() {}），所以 delete
+  // 时，会先调用派生类（Derived）析构函数，再调用基类（Base）析构函数，防止内存泄漏。
+  delete ptr;
+  ptr = nullptr;
+
+  system("pause");
+  return 0;
+}
 ```
 
-### volatile
+#### volatile
 
-* volatile 关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行优化。
+* volatile 关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行读取时优化。
 * volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被 volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值），保证对特殊地址的稳定访问
 * const 可以是 volatile （如只读的状态寄存器）
 * 指针可以是 volatile
@@ -230,13 +227,13 @@ int main()
 
   - 可以把一个非volatile int赋给volatile int，但是不能把非volatile对象赋给一个volatile对象。
   - 除了基本类型外，对用户定义类型也可以用volatile类型进行修饰。
-  - C++中一个有volatile标识符的类只能访问它接口的子集，一个由类的实现者控制的子集。用户只能用const_cast来获得对类型接口的完全访问。此外，volatile向const一样会从==类传递到它的成员。==
+  - C++中一个有volatile标识符的类只能访问它接口的子集，一个由类的实现者控制的子集。用户只能用const_cast来获得对类型接口的完全访问。此外，volatile向const一样会从类传递到它的成员。
 
-### mutable
+#### mutable
 
 mutable的中文意思是“可变的，易变的”，跟constant（既C++中的const）是反义词。在C++中，mutable也是为了突破const的限制而设置的。被mutable修饰的变量，将永远处于可变的状态，即使在一个const函数中。我们知道，如果类的成员函数不会改变对象的状态，那么这个成员函数一般会声明成const的。但是，有些时候，我们需要**在const函数里面修改一些跟类状态无关的数据成员，那么这个函数就应该被mutable来修饰，并且放在函数后后面关键字位置**。
 
-### assert()
+#### assert()
 
 断言，是宏，而非函数。assert 宏的原型定义在 `<assert.h>`（C）、`<cassert>`（C++）中，其作用是如果它的条件返回错误，则终止程序执行。可以通过定义 `NDEBUG` 来关闭 assert，但是需要在源代码的开头，`include <assert.h>` 之前。
 
@@ -247,42 +244,29 @@ mutable的中文意思是“可变的，易变的”，跟constant（既C++中�
 assert( p != NULL );    // assert 不可用
 ```
 
-### sizeof()
+#### sizeof()
 
 * sizeof 对数组，得到整个数组所占空间大小。
 * sizeof 对指针，得到指针本身所占空间大小。
 
-### #pragma pack(n)
+#### #pragma pack(n)
 
 `#pragma pack(n)`用来设定结构体、联合以及类成员变量以 n 字节方式对齐
 
 ```cpp
-#pragma pack(push)  // 保存对齐状态
-#pragma pack(4)     // 设定为 4 字节对齐
+#pragma pack(push) // 保存对齐状态
+#pragma pack(4)    // 设定为 4 字节对齐
 
-struct test
-{
-    char m1;
-    double m4;
-    int m3;
+struct test {
+  char m1;
+  double m4;
+  int m3;
 };
 
-#pragma pack(pop)   // 恢复对齐状态
+#pragma pack(pop) // 恢复对齐状态
 ```
 
-### 位域
-
-```cpp
-Bit mode: 2;    // mode 占 2 位
-```
-
-类可以将其（非静态）数据成员定义为位域（bit-field），在一个位域中含有一定数量的二进制位。当一个程序需要向其他程序或硬件设备传递二进制数据时，通常会用到位域。
-
-* 位域在内存中的布局是与机器有关的
-* 位域的类型必须是整型或枚举类型，带符号类型中的位域的行为将因具体实现而定
-* 取地址运算符（&）不能作用于位域，任何指针都无法指向类的位域
-
-### extern
+#### extern
 
 * 被 extern 限定的函数或变量是 extern 类型的
 * 被 `extern "C"` 修饰的变量和函数是按照 C 语言方式编译和链接的
@@ -301,16 +285,9 @@ void *memset(void *, int, size_t);
 #endif
 ```
 
-### C++ 中 struct 和 class
+#### union
 
-总的来说，struct 更适合看成是一个数据结构的实现体，class 更适合看成是一个对象的实现体。最本质的一个区别就是默认的访问控制
-
-1.  默认的==继承访问权限==。struct 是 public 的，class 是 private 的。  
-2.  struct 作为数据结构的实现体，它默认的==数据访问控制==是 public 的，而 class 作为对象的实现体，它默认的成员变量访问控制是 private 的。
-
-### union联合体
-
-联合（union）是一种节省空间的==特殊的类==，一个 union 可以有多个数据成员，但是在任意时刻只有一个数据成员可以有值。当某个成员被赋值后其他成员变为未定义状态。联合有如下特点：
+联合（union）是一种节省空间的特殊的类，一个 union 可以有多个数据成员，但是在任意时刻只有一个数据成员可以有值。当某个成员被赋值后其他成员变为未定义状态。联合有如下特点：
 
 * 默认访问控制符为 public
 * 可以含有构造函数、析构函数
@@ -322,109 +299,107 @@ void *memset(void *, int, size_t);
 * 全局匿名联合必须是静态（static）的
 
 ```cpp
-#include<iostream>
+#include <iostream>
 
 union UnionTest {
-    UnionTest() : i(10) {};
-    int i;
-    double d;
+  UnionTest() : i(10){};
+  int i;
+  double d;
 };
 
 static union {
-    int i;
-    double d;
+  int i;
+  double d;
 };
 
 int main() {
-    UnionTest u;
+  UnionTest u;
 
-    union {
-        int i;
-        double d;
-    };
+  union {
+    int i;
+    double d;
+  };
 
-    std::cout << u.i << std::endl;  // 输出 UnionTest 联合的 10
+  std::cout << u.i << std::endl; // 输出 UnionTest 联合的 10
 
-    ::i = 20;
-    std::cout << ::i << std::endl;  // 输出全局静态匿名联合的 20
+  ::i = 20;
+  std::cout << ::i << std::endl; // 输出全局静态匿名联合的 20
 
-    i = 30;
-    std::cout << i << std::endl;    // 输出局部匿名联合的 30
+  i = 30;
+  std::cout << i << std::endl; // 输出局部匿名联合的 30
 
-    return 0;
+  return 0;
 }
 ```
 
-### C实现C++类
-
-* 封装：使用函数指针把属性与方法封装到结构体中
-* 继承：结构体嵌套
-* 多态：父类与子类方法的函数指针不同
-
-### 函数调用过程栈的变化，返回值和参数变量哪个先入栈？
-
- 1、调用者函数把被调函数所需要的参数按照与被调函数的形参顺序相反的顺序压入栈中,即:从右向左依次把被调函数所需要的参数压入栈;
- 2、调用者函数使用call指令调用被调函数,并把call指令的下一条指令的地址当成返回地址压入栈中(这个压栈操作隐含在call指令中);
- 3、在被调函数中,被调函数会先保存调用者函数的栈底地址(push ebp),然后再保存调用者函数的栈顶地址,即:当前被调函数的栈底地址(mov ebp,esp);
- 4、在被调函数中,从ebp的位置处开始存放被调函数中的局部变量和临时变量,并且这些变量的地址按照定义时的顺序依次减小,即:这些变量的地址是按照栈的延伸方向排列的,先定义的变量先入栈,后定义的变量后入栈;
-
-### explicit（显式）关键字
+#### explicit
 
 * explicit 修饰构造函数时，可以防止==隐式转换和复制初始化==
 * explicit 修饰转换函数时，可以防止隐式转换，但 [按语境转换](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 除外
 
 ```cpp
-struct A
-{
-	A(int) { }
-	operator bool() const { return true; }
+struct A {
+  A(int) {}
+  operator bool() const { return true; }
 };
 
-struct B
-{
-	explicit B(int) {}
-	explicit operator bool() const { return true; }
+struct B {
+  explicit B(int) {}
+  explicit operator bool() const { return true; }
 };
 
 void doA(A a) {}
 
 void doB(B b) {}
 
-int main()
-{
-	A a1(1);		// OK：直接初始化
-	A a2 = 1;		// OK：复制初始化
-	A a3{ 1 };		// OK：直接列表初始化
-	A a4 = { 1 };		// OK：复制列表初始化
-	A a5 = (A)1;		// OK：允许 static_cast 的显式转换 
-	doA(1);			// OK：允许从 int 到 A 的隐式转换
-	if (a1);		// OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
-	bool a6(a1);		// OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
-	bool a7 = a1;		// OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
-	bool a8 = static_cast<bool>(a1);  // OK ：static_cast 进行直接初始化
+int main() {
+  A a1(1);     // OK：直接初始化
+  A a2 = 1;    // OK：复制初始化
+  A a3{1};     // OK：直接列表初始化
+  A a4 = {1};  // OK：复制列表初始化
+  A a5 = (A)1; // OK：允许 static_cast 的显式转换
+  doA(1);      // OK：允许从 int 到 A 的隐式转换
+  if (a1)
+    ;                              // OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
+  bool a6(a1);                     // OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
+  bool a7 = a1;                    // OK：使用转换函数 A::operator bool() 的从 A 到 bool 的隐式转换
+  bool a8 = static_cast<bool>(a1); // OK ：static_cast 进行直接初始化
 
-	B b1(1);		// OK：直接初始化
-	B b2 = 1;		// 错误：被 explicit 修饰构造函数的对象不可以复制初始化
-	B b3{ 1 };		// OK：直接列表初始化
-	B b4 = { 1 };		// 错误：被 explicit 修饰构造函数的对象不可以复制列表初始化
-	B b5 = (B)1;		// OK：允许 static_cast 的显式转换
-	doB(1);			// 错误：被 explicit 修饰构造函数的对象不可以从 int 到 B 的隐式转换
-	if (b1);		// OK：被 explicit 修饰转换函数 B::operator bool() 的对象可以从 B 到 bool 的按语境转换
-	bool b6(b1);		// OK：被 explicit 修饰转换函数 B::operator bool() 的对象可以从 B 到 bool 的按语境转换
-	bool b7 = b1;		// 错误：被 explicit 修饰转换函数 B::operator bool() 的对象不可以隐式转换
-	bool b8 = static_cast<bool>(b1);  // OK：static_cast 进行直接初始化
+  B b1(1);     // OK：直接初始化
+  B b2 = 1;    // 错误：被 explicit 修饰构造函数的对象不可以复制初始化
+  B b3{1};     // OK：直接列表初始化
+  B b4 = {1};  // 错误：被 explicit 修饰构造函数的对象不可以复制列表初始化
+  B b5 = (B)1; // OK：允许 static_cast 的显式转换
+  doB(1);      // 错误：被 explicit 修饰构造函数的对象不可以从 int 到 B 的隐式转换
+  if (b1)
+    ; // OK：被 explicit 修饰转换函数 B::operator bool() 的对象可以从 B 到 bool 的按语境转换
+  bool b6(b1); // OK：被 explicit 修饰转换函数 B::operator bool() 的对象可以从 B 到 bool 的按语境转换
+  bool b7 = b1; // 错误：被 explicit 修饰转换函数 B::operator bool() 的对象不可以隐式转换
+  bool b8 = static_cast<bool>(b1); // OK：static_cast 进行直接初始化
 
-	return 0;
+  return 0;
 }
 ```
 
-### friend友元函数和友元类
+#### friend
 
 * 能访问私有成员  
 * 破坏封装性
 * 友元关系不可传递
 * 友元关系的单向性
 * 友元声明的形式及数量不受限制
+
+#### 位域
+
+```cpp
+Bit mode: 2;    // mode 占 2 位
+```
+
+类可以将其（非静态）数据成员定义为位域（bit-field），在一个位域中含有一定数量的二进制位。当一个程序需要向其他程序或硬件设备传递二进制数据时，通常会用到位域。
+
+* 位域在内存中的布局是与机器有关的
+* 位域的类型必须是整型或枚举类型，带符号类型中的位域的行为将因具体实现而定
+* 取地址运算符（&）不能作用于位域，任何指针都无法指向类的位域
 
 ### 什么情况下会调用拷贝构造函数
 
@@ -1849,7 +1824,11 @@ decltype(auto) j = f;//j的类型是const int* 并且指向的是e
 
 // 待完善
 
-## 二、C++2.0
+***
+
+### 二、C++2.0
+
+***
 
 ### 模板函数和模板特化
 
@@ -3089,7 +3068,11 @@ map支持键值的自动排序，底层机制是红黑树，红黑树的查询�
 
 一旦hash函数计算的结果相同，就放入公共溢出区
 
-## 三、STL
+***
+
+### 三、STL
+
+***
 
 ### STL 索引
 
@@ -3123,9 +3106,11 @@ map支持键值的自动排序，底层机制是红黑树，红黑树的查询�
 | find() | 顺序查找 |    O(n)    |   可重复   |
 | sort() | 内省排序 |  O(nlogn)  |   可重复   |
 
+***
 
+### 四、C++程序静态库和动态库
 
-## 四、C++程序静态库和动态库
+***
 
 ### 4.1 内存、栈、堆
 
