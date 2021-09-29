@@ -1,10 +1,10 @@
 ***
 
-### 一、C++基础
+## 一、C++基础
 
 ***
 
-#### const
+### const
 
 **作用：**
 
@@ -57,7 +57,7 @@ const int *function6(); // 返回一个指向常量的指针变量，使用：co
 int *const function7(); // 返回一个指向变量的常指针，使用：int* const p = function7();
 ```
 
-#### static
+### static
 
 - 修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它
 - 修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为 static
@@ -72,7 +72,7 @@ int *const function7(); // 返回一个指向变量的常指针，使用：int* 
 
 * 而在C++中，初始化时在执行相关代码时才会进行初始化，主要是由于C++引入对象后，要进行初始化必须执行相应构造函数和析构函数，在构造函数或析构函数中经常会需要进行某些程序中需要进行的特定操作，并非简单地分配内存。所以C++标准定为全局或静态对象是有首次用到时才会进行构造，并通过atexit()来管理。在程序结束，按照构造顺序反方向进行逐个析构。所以在C++中是可以使用变量对静态局部变量进行初始化的
 
-#### this
+### this
 
 - `this` 指针是一个隐含于每一个非静态成员函数中的特殊指针。它指向调用该成员函数的那个对象
 - 当对一个对象调用成员函数时，编译程序先将对象的地址赋给 `this` 指针，然后调用成员函数，每次成员函数存取数据成员时，都隐式使用 `this` 指针
@@ -116,7 +116,7 @@ this是类的指针，如果换成结构体，那this就是结构的指针了。
 
 普通的类函数（不论是成员函数，还是静态函数）都不会创建一个函数表来保存函数指针。只有虚函数才会被放到函数表中。但是，即使是虚函数，如果编译期就能明确知道调用的是哪个函数，编译器就不会通过函数表中的指针来间接调用，而是会直接调用该函数。正是由于this指针的存在，用来指向不同的对象，从而确保不同对象之间调用相同的函数可以互不干扰
 
-#### inline
+### inline
 
 **特点：**
 
@@ -217,7 +217,7 @@ int main() {
 }
 ```
 
-#### volatile
+### volatile
 
 * volatile 关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行读取时优化。
 * volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被 volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值），保证对特殊地址的稳定访问
@@ -229,11 +229,11 @@ int main() {
   - 除了基本类型外，对用户定义类型也可以用volatile类型进行修饰。
   - C++中一个有volatile标识符的类只能访问它接口的子集，一个由类的实现者控制的子集。用户只能用const_cast来获得对类型接口的完全访问。此外，volatile向const一样会从类传递到它的成员。
 
-#### mutable
+### mutable
 
 mutable的中文意思是“可变的，易变的”，跟constant（既C++中的const）是反义词。在C++中，mutable也是为了突破const的限制而设置的。被mutable修饰的变量，将永远处于可变的状态，即使在一个const函数中。我们知道，如果类的成员函数不会改变对象的状态，那么这个成员函数一般会声明成const的。但是，有些时候，我们需要**在const函数里面修改一些跟类状态无关的数据成员，那么这个函数就应该被mutable来修饰，并且放在函数后后面关键字位置**。
 
-#### assert()
+### assert()
 
 断言，是宏，而非函数。assert 宏的原型定义在 `<assert.h>`（C）、`<cassert>`（C++）中，其作用是如果它的条件返回错误，则终止程序执行。可以通过定义 `NDEBUG` 来关闭 assert，但是需要在源代码的开头，`include <assert.h>` 之前。
 
@@ -244,12 +244,12 @@ mutable的中文意思是“可变的，易变的”，跟constant（既C++中�
 assert( p != NULL );    // assert 不可用
 ```
 
-#### sizeof()
+### sizeof()
 
 * sizeof 对数组，得到整个数组所占空间大小。
 * sizeof 对指针，得到指针本身所占空间大小。
 
-#### #pragma pack(n)
+### #pragma pack(n)
 
 `#pragma pack(n)`用来设定结构体、联合以及类成员变量以 n 字节方式对齐
 
@@ -266,7 +266,7 @@ struct test {
 #pragma pack(pop) // 恢复对齐状态
 ```
 
-#### extern
+### extern
 
 * 被 extern 限定的函数或变量是 extern 类型的
 * 被 `extern "C"` 修饰的变量和函数是按照 C 语言方式编译和链接的
@@ -285,7 +285,7 @@ void *memset(void *, int, size_t);
 #endif
 ```
 
-#### union
+### union
 
 联合（union）是一种节省空间的特殊的类，一个 union 可以有多个数据成员，但是在任意时刻只有一个数据成员可以有值。当某个成员被赋值后其他成员变为未定义状态。联合有如下特点：
 
@@ -332,7 +332,7 @@ int main() {
 }
 ```
 
-#### explicit
+### explicit
 
 * explicit 修饰构造函数时，可以防止==隐式转换和复制初始化==
 * explicit 修饰转换函数时，可以防止隐式转换，但 [按语境转换](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 除外
@@ -381,7 +381,7 @@ int main() {
 }
 ```
 
-#### friend
+### friend
 
 * 能访问私有成员  
 * 破坏封装性
@@ -389,7 +389,7 @@ int main() {
 * 友元关系的单向性
 * 友元声明的形式及数量不受限制
 
-#### 位域
+### 位域
 
 ```cpp
 Bit mode: 2;    // mode 占 2 位
@@ -411,51 +411,42 @@ Bit mode: 2;    // mode 占 2 位
 
 **总结就是：即使发生NRA优化的情况下，Linux+ g++的环境是不管值返回方式还是引用方式返回的方式都不会发生拷贝构造函数，而Windows + VS2015在值返回的情况下发生拷贝构造函数，引用返回方式则不发生拷贝构造函数**。
 
-**在VS2015下进行下述实验：**
+**在VS Code + Clang++下进行下述实验：**
 
 ```C++
-class A
-{
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class A {
 public:
-	A() {};
-	A(const A& a)
-	{
-		cout << "copy constructor is called" << endl;
-	};
-	~A() {};
+  A(){};
+  A(const A &a) { cout << "copy constructor is called." << endl; };
+  ~A(){};
 };
 
 void useClassA(A a) {}
 
-A getClassA()//此时会发生拷贝构造函数的调用，虽然发生NRV优化，但是依然调用拷贝构造函数
-{
-	A a;
-	return a;
+A getClassA() {
+  A a;
+  // 此时会发生拷贝构造函数的调用，虽然发生NRV优化，但是依然调用拷贝构造函数
+  return a;
 }
 
+A &getClassA2() {
+  A a;
+  return a;
+}
 
-//A& getClassA2()//  VS2015下，此时编辑器会进行（Named return Value优化）NRV优化,不调用拷贝构造函数 ，如果是引用传递的方式返回当前函数体内生成的对象时，并不发生拷贝构造函数的调用
-//{
-//	A a;
-//	return a;
-//}
-
-int main()
-{
-	A a1, a2,a3,a4;
-	A a2 = a1;  		//调用拷贝构造函数,对应情况1
-	useClassA(a1);		//调用拷贝构造函数，对应情况2
-	a3 = getClassA();	//发生NRV优化，但是值返回，依然会有拷贝构造函数的调用 情况3
-	a4 = getClassA2(a1);//发生NRV优化，且引用返回自身，不会调用
-    return 0;
+int main() {
+  A a1, a3, a4;
+  // A a2 = a1; // 调用拷贝构造函数,对应情况1
+  // useClassA(a1); // 调用拷贝构造函数，对应情况2
+  // a3 = getClassA(); // clang++ Win下没有调用构造函数
+  a4 = getClassA2(); // 发生NRV优化，且引用返回自身，不会调用
+  return 0;
 }
 ```
-
-情况1比较好理解
-
-情况2的实现过程是，调用函数时先根据传入的实参产生临时对象，再用拷贝构造去初始化这个临时对象，在函数中与形参对应，函数调用结束后析构临时对象
-
-情况3在执行return时，理论的执行过程是：产生临时对象，调用拷贝构造函数把返回对象拷贝给临时对象，函数执行完先析构局部变量，再析构临时对象，  依然会调用拷贝构造函数
 
 ### using的使用规范
 
@@ -472,10 +463,11 @@ using namespace_name::name;
 在 C++11 中，派生类能够重用其直接基类定义的构造函数。
 
 ```cpp
+class Base {};
+
 class Derived : Base {
 public:
-    using Base::Base;
-    /* ... */
+  using Base::Base; // 继承构造函数
 };
 ```
 
@@ -524,34 +516,31 @@ cout << x << endl;
 3. 命名空间作用域符（`namespace::name`）:用于表示指定类型的作用域范围是具体某个命名空间的
 
 ```cpp
-int count = 11;         // 全局（::）的 count
+int count = 11; // 全局（::）的 count
 
 class A {
 public:
-	static int count;   // 类 A 的 count（A::count）
+  static int count; // 类 A 的 count（A::count）
 };
 int A::count = 21;
 
-void fun()
-{
-	int count = 31;     // 初始化局部的 count 为 31
-	count = 32;         // 设置局部的 count 的值为 32
+void fun() {
+  int count = 31; // 初始化局部的 count 为 31
+  count = 32;     // 设置局部的 count 的值为 32
 }
 
 int main() {
-	::count = 12;       // 测试 1：设置全局的 count 的值为 12
+  ::count = 12;  // 测试 1：设置全局的 count 的值为 12
+  A::count = 22; // 测试 2：设置类 A 的 count 为 22
+  fun();         // 测试 3
 
-	A::count = 22;      // 测试 2：设置类 A 的 count 为 22
-
-	fun();		        // 测试 3
-
-	return 0;
+  return 0;
 }
 ```
 
 ### enum枚举类型
 
-**限定作用域的枚举类型**
+**强枚举类型**
 
 ```cpp
 enum class open_modes { input, output, append };
@@ -574,10 +563,10 @@ enum { floatPrec = 6, doublePrec = 10 };
 
 右值引用就是必须绑定到右值（一个临时对象、将要销毁的对象）的引用，一般表示对象的值。
 
-右值引用可实现转移语义（Move Sementics）和精确传递（Perfect Forwarding），它的主要目的有两个方面：
+右值引用可实现转移语义（Move Sementics）和完美转发（Perfect Forwarding），它的主要目的有两个方面：
 
-* ==消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。==
-* ==能够更简洁明确地定义泛型函数。==
+* 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率
+* 能够更简洁明确地定义泛型函数
 
 **引用折叠**
 
@@ -595,9 +584,8 @@ enum { floatPrec = 6, doublePrec = 10 };
 - 左值和右值是独立于他们的类型的，右值引用可能是左值可能是右值，如果这个右值引用已经被命名了，他就是左值
 - 引用折叠规则：所有的右值引用叠加到右值引用上仍然是一个右值引用，其他引用折叠都为左值引用。当`T&&`为模板参数时，输入左值，它将变成左值引用，输入右值则变成具名的右值应用
 - 移动语义可以减少无谓的内存拷贝，要想实现移动语义，需要实现移动构造函数和移动赋值函数
-- `std::move()`将一个左值转换成一个右值，强制使用移动拷贝和赋值函数，这个函数本身并没有对这个左值什么特殊操作
+- `std::move()`将一个左值转换成一个右值，强制使用移动构造和赋值函数，这个函数本身并没有对这个左值什么特殊操作
 - `std::forward()`和`universal references`通用引用共同实现完美转发
-- 用`empalce_back()`替换`push_back()`增加性能
 
 ### 面向对象
 
@@ -632,11 +620,10 @@ enum { floatPrec = 6, doublePrec = 10 };
 函数重载，泛型编程
 
 ```cpp
-class A
-{
+class A {
 public:
-    void do(int a);
-    void do(int a, int b);
+  void do(int a);
+  void do(int a, int b);
 };
 ```
 
@@ -652,72 +639,180 @@ public:
 * 内联函数不能是表现多态性时的虚函数
 
 ```cpp
-class Shape                     // 形状类
-{
+class Shape { // 形状类
 public:
-    virtual double calcArea()
-    {
-        ...
-    }
-    virtual ~Shape();
+  virtual double calcArea() {}
+  virtual ~Shape();
 };
-class Circle : public Shape     // 圆形类
-{
+
+class Circle : public Shape { // 圆形类
 public:
-    virtual double calcArea();
-    ...
+  virtual double calcArea();
 };
-class Rect : public Shape       // 矩形类
-{
+
+class Rect : public Shape { // 矩形类
 public:
-    virtual double calcArea();
-    ...
+  virtual double calcArea();
 };
-int main()
-{
-    Shape * shape1 = new Circle(4.0);
-    Shape * shape2 = new Rect(5.0, 6.0);
-    shape1->calcArea();         // 调用圆形类里面的方法
-    shape2->calcArea();         // 调用矩形类里面的方法
-    delete shape1;
-    shape1 = nullptr;
-    delete shape2;
-    shape2 = nullptr;
-    return 0;
+
+int main() {
+  Shape *shape1 = new Circle();
+  Shape *shape2 = new Rect();
+  shape1->calcArea(); // 调用圆形类里面的方法
+  shape2->calcArea(); // 调用矩形类里面的方法
+  delete shape1;
+  shape1 = nullptr;
+  delete shape2;
+  shape2 = nullptr;
+  return 0;
 }
 ```
 
-**虚析构函数**
+### 什么情况会自动生成默认构造函数？
 
-虚析构函数是为了解决基类的指针指向派生类对象，并用基类的指针删除派生类对象。
+1) 带有默认构造函数的类成员对象，如果一个类没有任何构造函数，但它含有一个成员对象，而后者有默认构造函数，那么编译器就为该类合成出一个默认构造函数。不过这个合成操作只有在构造函数真正被需要的时候才会发生；如果一个类A含有多个成员类对象的话，那么类A的每一个构造函数必须调用每一个成员对象的默认构造函数而且必须按照类对象在类A中的声明顺序进行；
 
-```cpp
-class Shape
-{
+2) 带有默认构造函数的基类，如果一个没有默认构造函数的派生类派生自一个带有默认构造函数基类，那么该派生类会合成一个构造函数调用上一层基类的默认构造函数；
+
+3) 带有一个虚函数的类
+
+4) 带有一个虚基类的类
+
+5) 合成的默认构造函数中，只有基类子对象和成员类对象会被初始化。所有其他的非静态数据成员都不会被初始化。
+
+### 构造函数中的default和delete
+
+default关键字可以显式要求编译器生成合成构造函数，防止在调用时相关构造函数类型没有定义而报错
+
+```C++
+#include <string>
+
+class CString {
 public:
-    Shape();                    // 构造函数不能是虚函数
-    virtual double calcArea();
-    virtual ~Shape();           // 虚析构函数
-};
-class Circle : public Shape     // 圆形类
-{
+  CString() = default; // 语句1
+  CString(const char *pstr) : _str(pstr) {}
+  ~CString() {}
+
 public:
-    virtual double calcArea();
-    ...
+  std::string _str;
 };
-int main()
-{
-    Shape * shape1 = new Circle(4.0);
-    shape1->calcArea();    
-    delete shape1;  // 因为Shape有虚析构函数，所以delete释放内存时，先调用子类析构函数，再调用基类析构函数，防止内存泄漏。
-    shape1 = NULL;
-    return 0；
+
+int main() {
+  auto a = new CString(); // 没有语句一，则编译失败
+  return 0;
 }
 ```
+
+如果没有加语句1，构造无参对象会报错，表示找不到参数为空的构造函数，将其设置为default可以解决这个问题，主要是因为当显式声明任一构造函数时，编译器便不会再生成任何默认构造函数。
+
+delete关键字可以删除构造函数、赋值运算符函数等，这样在使用的时候会得到友善的提示
+
+```C++
+#include <iostream>
+using namespace std;
+
+class CString {
+public:
+  void *operator new(size_t size) = delete; // 禁止使用new关键字
+  ~CString() {}
+};
+
+int main() {
+  auto a = new CString(); // 语句1
+  cout << "Hello World" << endl;
+  return 0;
+}
+```
+
+在执行语句1时，会提示new方法已经被删除，如果将new设置为私有方法，则会报惨不忍睹的错误，因此使用delete关键字可以更加人性化的删除一些默认方法
+
+### 如何定义一个只能在堆上（栈上）生成对象的类？
+
+**只能在堆上**
+
+方法：将析构函数设置为私有，或者使用delete关键字显式删除析构函数
+
+原因：C++ 是静态绑定语言，编译器管理栈上对象的生命周期，编译器在为类对象分配栈空间时，会先检查类的析构函数的访问性。若析构函数不可访问，则不能在栈上创建对象。
+
+**只能在栈上**
+
+方法：将 new 和 delete 重载为私有，或者用delete关键字显式删除
+
+原因：在堆上生成对象，使用 new 关键词操作，其过程分为两阶段：第一阶段，使用 new 在堆上寻找可用内存，分配给对象；第二阶段，调用构造函数生成对象。将 new 操作设置为私有，那么第一阶段就无法完成，就不能够在堆上生成对象。
+
+### 类成员初始化方式？构造函数的执行顺序 ？为什么用成员初始化列表会快一些？
+
+* 赋值初始化，通过在构造函数体内进行赋值初始化
+* 列表初始化，在冒号后使用初始化列表进行初始化
+
+**这两种方式的主要区别在于：**
+
+对于在函数体中初始化,是在所有的数据成员被分配内存空间后才进行的。
+
+列表初始化是给数据成员分配内存空间时就进行初始化，就是说分配一个数据成员只要冒号后有此数据成员的赋值表达式(此表达式必须是括号赋值表达式)，那么分配了内存空间后在进入函数体之前给数据成员赋值，就是说初始化这个数据成员此时函数体还未执行。 
+
+构造函数中的初始化会产生临时对象，没有列表初始化效率高。
+
+**一个派生类构造函数的执行顺序如下：**
+
+①   虚拟基类的构造函数（多个虚拟基类则按照继承的顺序执行构造函数）。
+
+②   基类的构造函数（多个普通基类也按照继承的顺序执行构造函数）。
+
+③   类类型的成员对象的构造函数（按照初始化顺序）
+
+④   派生类自己的构造函数。
+
+**哪几种情况必须用到初始化成员列表？**
+
+* 当初始化一个引用成员时；
+
+* 当初始化一个常量成员时；
+
+* 当调用一个基类的构造函数，而它拥有一组参数时；
+
+* 当调用一个成员类的构造函数，而它拥有一组参数时；
+
+### public，protected和private详解
+
+- public的变量和函数在类的内部外部都可以访问。
+
+- protected的变量和函数只能在类的内部和其派生类中访问。
+
+- private修饰的元素只能在类内访问。
+
+（一）访问权限
+
+派生类可以继承基类中除了构造/析构、赋值运算符重载函数之外的成员，但是这些成员的访问属性在派生过程中也是可以调整的，三种派生方式的访问权限如下表所示：注意外部访问并不是真正的外部访问，而是在通过派生类的对象对基类成员的访问。
+
+![image-20210930004605165](https://gitee.com/duycc/picgo/raw/master/20210930004608.png)
+
+派生类对基类成员的访问形象有如下两种：
+
+- 内部访问：由派生类中新增的成员函数对从基类继承来的成员的访问
+- 外部访问：在派生类外部，通过派生类的对象对从基类继承来的成员的访问
+
+（二）继承权限
+
+**public继承**
+
+公有继承的特点是基类的公有成员和保护成员作为派生类的成员时，都保持原有的状态，而基类的私有成员任然是私有的，不能被这个派生类的子类所访问
+
+**protected继承**
+
+保护继承的特点是基类的所有公有成员和保护成员都成为派生类的保护成员，并且只能被它的派生类成员函数或友元函数访问，基类的私有成员仍然是私有的，访问规则如下表
+
+![image-20210930004718842](https://gitee.com/duycc/picgo/raw/master/20210930004720.png)
+
+**private继承**
+
+私有继承的特点是基类的所有公有成员和保护成员都成为派生类的私有成员，并不被它的派生类的子类所访问，基类的成员只能由自己派生类访问，无法再往下继承，访问规则如下表
+
+![image-20210930004838098](https://gitee.com/duycc/picgo/raw/master/20210930004839.png)
 
 ### C++的虚机制
 
-**虚函数，纯虚函数**
+**纯虚函数**
 
 纯虚函数是一种特殊的虚函数，在基类中不能对虚函数给出有意义的实现，而把它声明为纯虚函数，它的实现留给该基类的派生类去做。
 
@@ -725,15 +820,10 @@ int main()
 virtual int A() = 0;
 ```
 
-* 类里如果声明了虚函数，这个函数是实现的，哪怕是空实现，它的作用就是为了能让这个函数在它的子类里面可以被覆盖（override），这样的话，编译器就可以使用后期绑定来达到多态了。纯虚函数只是一个接口，是个函数的声明而已，它要留到子类里去实现。 
-* 虚函数在子类里面可以不重写；但纯虚函数必须在子类实现才可以实例化子类。
-* 虚函数的类用于 “实作继承”，继承接口的同时也继承了父类的实现。纯虚函数关注的是接口的统一性，实现由子类完成。 
-* 带纯虚函数的类叫抽象类，这种类不能直接生成对象，而只有被继承，并重写其虚函数后，才能使用。抽象类被继承后，子类可以继续是抽象类，也可以是普通类。
-
-**虚函数指针，虚函数表**
-
-* 虚函数指针：在含有虚函数类的对象中，指向虚函数表，在运行时确定。
-* 虚函数表：在程序只读数据段（`.rodata section`），存放虚函数指针，如果派生类实现了基类的某个虚函数，则在虚表中覆盖原本基类的那个虚函数指针，在编译时根据类的声明创建。
+* 类里如果声明了虚函数，这个函数是实现的，哪怕是空实现，它的作用就是为了能让这个函数在它的子类里面可以被覆盖（override），这样的话，编译器就可以使用后期绑定来达到多态了。纯虚函数只是一个接口，是个函数的声明而已，它要留到子类里去实现
+* 虚函数在子类里面可以不重写；但纯虚函数必须在子类实现才可以实例化子类
+* 虚函数的类用于 “实作继承”，继承接口的同时也继承了父类的实现。纯虚函数关注的是接口的统一性，实现由子类完成 
+* 带纯虚函数的类叫抽象类，这种类不能直接生成对象，而只有被继承，并重写其虚函数后，才能使用。抽象类被继承后，子类可以继续是抽象类，也可以是普通类
 
 **虚继承，虚函数**
 
@@ -749,10 +839,7 @@ virtual int A() = 0;
   * 虚函数
     * 虚函数不占用存储空间
     * 虚函数表存储的是虚函数地址
-* 模板类中可以使用虚函数
-* 一个类（无论是普通类还是类模板）的成员模板（本身是模板的成员函数）不能是虚函数
-
-
+* 模板类中可以使用虚函数，但虚函数本身不能是成员函数模板
 
 **基类的虚函数表存放在内存的什么区，虚表指针vptr的初始化时间**
 
@@ -760,53 +847,21 @@ virtual int A() = 0;
 
 - 虚函数表是全局共享的元素，即全局仅有一个，在编译时就构造完成
 
-- 虚函数表类似一个数组，类对象中存储vptr指针，指向虚函数表，即虚函数表不是函数，不是程序代码，不可能存储在代码段
+- 虚函数表类似一个数组，类对象中存储vfptr指针，指向虚函数表，即虚函数表不是函数，不是程序代码，不可能存储在代码段
 
 - 虚函数表存储虚函数的地址,即虚函数表的元素是指向类成员函数的指针,而类中虚函数的个数在编译时期可以确定，即虚函数表的大小可以确定,即大小是在编译时期确定的，不必动态分配内存空间存储虚函数表，所以不在堆中
 
-根据以上特征，虚函数表类似于类中静态成员变量.静态成员变量也是全局共享，大小确定，因此最有可能存在全局数据区，测试结果显示：
+根据以上特征，虚函数表类似于类中静态成员变量.静态成员变量也是全局共享，大小确定，因此最有可能存在全局数据区，测试结果显示：虚函数表vtable在Linux/Unix中存放在可执行文件的只读数据段中(rodata)，这与微软的编译器将虚函数表存放在常量段存在一些差别
 
-虚函数表vtable在Linux/Unix中存放在可执行文件的只读数据段中(rodata)，这与微软的编译器将虚函数表存放在常量段存在一些差别
+由于虚表指针vptr跟虚函数密不可分，对于有虚函数或者继承于拥有虚函数的基类，对该类进行实例化时，在构造函数执行时会对虚表指针进行初始化，并且位于对象内存布局的最前面。
 
-由于虚表指针vptr跟虚函数密不可分，对于有虚函数或者继承于拥有虚函数的基类，对该类进行实例化时，在构造函数执行时会对虚表指针进行初始化，并且存在对象内存布局的最前面。
+### 构造函数和析构函数是否可以为虚函数？
 
-### 什么情况会自动生成默认构造函数？
+**构造函数不可以为虚函数**
 
-1) 带有默认构造函数的类成员对象，如果一个类没有任何构造函数，但它含有一个成员对象，而后者有默认构造函数，那么编译器就为该类合成出一个默认构造函数。不过这个合成操作只有在构造函数真正被需要的时候才会发生；如果一个类A含有多个成员类对象的话，那么类A的每一个构造函数必须调用每一个成员对象的默认构造函数而且必须按照类对象在类A中的声明顺序进行；
+虚函数的运行机制是依赖于虚函数表和虚指针的，虚函数表不属于类，是全局变量，但虚指针是类对象的一部分，在实例化一个对象时，会生成虚函数指针，且位于对象内存布局的最前面，占一个指针大小的内存。并且进行了初始化。也就是说，虚指针是在调用构造函数实例化一个对象之后才产生的，如果将构造函数声明为虚函数，那么又如何生成虚指针呢？所以构造函数不可以为虚函数。
 
-2) 带有默认构造函数的基类，如果一个没有默认构造函数的派生类派生自一个带有默认构造函数基类，那么该派生类会合成一个构造函数调用上一层基类的默认构造函数；
-
-3) 带有一个虚函数的类
-
-4) 带有一个虚基类的类
-
-5) 合成的默认构造函数中，只有基类子对象和成员类对象会被初始化。所有其他的非静态数据成员都不会被初始化。
-
-### 为什么析构函数一般写成虚函数
-
-**1、 从存储空间角度，**虚函数相应一个指向vtable虚函数表的指针，这大家都知道，但是这个指向vtable的指针事实上是存储在对象的内存空间的。
-
-问题出来了，假设构造函数是虚的，就须要通过 vtable来调用，但是对象还没有实例化，也就是内存空间还没有，vfptr也没有初始化，又怎么找vtable呢？所以构造函数不能是虚函数。
-
-**2、 从使用角度，**虚函数主要用于在信息不全的情况下，能使重载的函数得到相应的调用。
-
-构造函数本身就是要初始化实例，那使用虚函数也没有实际意义呀。
-
-所以构造函数没有必要是虚函数。虚函数的作用在于通过父类的指针或者引用来调用它的时候可以变成调用子类的那个成员函数。而构造函数是在创建对象时自己主动调用的，不可能通过父类的指针或者引用去调用，因此也就规定构造函数不能是虚函数。
-
-**3、构造函数不须要是虚函数，也不同意是虚函数，**由于创建一个对象时我们总是要明白指定对象的类型，虽然我们可能通过基类的指针或引用去訪问它但析构却不一定，我们往往通过基类的指针来销毁对象。这时候假设析构函数不是虚函数，就不能正确识别对象类型从而不能正确调用析构函数。
-
-**4、从实现上看，**vbtl在构造函数调用后才建立，因而构造函数不可能成为虚函数从实际含义上看，在调用构造函数时还不能确定对象的真实类型（由于子类会调父类的构造函数）；并且构造函数的作用是提供初始化，在对象生命期仅仅运行一次，不是对象的动态行为，也没有必要成为虚函数。
-
-**5、当一个构造函数被调用时，它做的首要的事情之中的一个是初始化它的vptr。**
-
-因此，它仅仅能知道它是“当前”类的，而全然忽视这个对象后面是否还有继承者。当编译器为这个构造函数产生代码时，它是为这个类的构造函数产生代码——既不是为基类，也不是为它的派生类（由于类不知道谁继承它）。所以它使用的VPTR必须是对于这个类的VTABLE。
-
-并且，仅仅要它是最后的构造函数调用，那么在这个对象的生命期内，VPTR将保持被初始化为指向这个VTABLE, 但假设接着另一个更晚派生的构造函数被调用，这个构造函数又将设置VPTR指向它的 VTABLE，等.直到最后的构造函数结束。
-
-VPTR的状态是由被最后调用的构造函数确定的。这就是为什么构造函数调用是从基类到更加派生类顺序的还有一个理由。可是，当这一系列构造函数调用正发生时，每一个构造函数都已经设置VPTR指向它自己的VTABLE。假设函数调用使用虚机制，它将仅仅产生通过它自己的VTABLE的调用，而不是最后的VTABLE（全部构造函数被调用后才会有最后的VTABLE）。
-
-因为构造函数本来就是为了明确初始化对象成员才产生的，然而virtual function主要是为了再不完全了解细节的情况下也能正确处理对象。另外，virtual函数是在不同类型的对象产生不同的动作，现在对象还没有产生，如何使用virtual函数来完成你想完成的动作。
+**当存在继承关系时，析构函数需声明为虚函数**
 
 直接的讲，C++中基类采用virtual虚析构函数是**为了防止内存泄漏。**
 
@@ -818,37 +873,27 @@ VPTR的状态是由被最后调用的构造函数确定的。这就是为什么�
 #include <iostream>
 using namespace std;
 
-class Parent{
+class Parent {
 public:
-	Parent(){
-		cout << "Parent construct function"  << endl;
-	};
-	~Parent(){
-		cout << "Parent destructor function" <<endl;
-	}
+  Parent() { cout << "Parent construct function" << endl; };
+  ~Parent() { cout << "Parent destructor function" << endl; }
 };
 
-class Son : public Parent{
+class Son : public Parent {
 public:
-	Son(){
-		cout << "Son construct function"  << endl;
-	};
-	~Son(){
-		cout << "Son destructor function" <<endl;
-	}
+  Son() { cout << "Son construct function" << endl; };
+  ~Son() { cout << "Son destructor function" << endl; }
 };
 
-int main()
-{
-	Parent* p = new Son();
-	delete p;
-	p = NULL;
-	return 0;
+int main() {
+  Parent *p = new Son();
+  delete p;
+  p = NULL;
+  return 0;
 }
-//运行结果：
-//Parent construct function
-//Son construct function
-//Parent destructor function
+// Parent construct function
+// Son construct function
+// Parent destructor function
 ```
 
 将基类的析构函数声明为虚函数：
@@ -857,179 +902,39 @@ int main()
 #include <iostream>
 using namespace std;
 
-class Parent{
+class Parent {
 public:
-	Parent(){
-		cout << "Parent construct function"  << endl;
-	};
-	virtual ~Parent(){
-		cout << "Parent destructor function" <<endl;
-	}
+  Parent() { cout << "Parent construct function" << endl; };
+  virtual ~Parent() { cout << "Parent destructor function" << endl; }
 };
 
-class Son : public Parent{
+class Son : public Parent {
 public:
-	Son(){
-		cout << "Son construct function"  << endl;
-	};
-	~Son(){
-		cout << "Son destructor function" <<endl;
-	}
+  Son() { cout << "Son construct function" << endl; };
+  ~Son() { cout << "Son destructor function" << endl; }
 };
 
-int main()
-{
-	Parent* p = new Son();
-	delete p;
-	p = NULL;
-	return 0;
+int main() {
+  Parent *p = new Son();
+  delete p;
+  p = NULL;
+  return 0;
 }
-//运行结果：
-//Parent construct function
-//Son construct function
-//Son destructor function
-//Parent destructor function
+// Parent construct function
+// Son construct function
+// Son destructor function
+// Parent destructor function
 ```
 
 ### 构造函数和析构函数可以调用虚函数吗，为什么
 
-1) 在C++中，提倡不在构造函数和析构函数中调用虚函数；
+1) 在C++中，不提倡在构造函数和析构函数中调用虚函数；
 
 2) 构造函数和析构函数调用虚函数时都不使用动态联编，如果在构造函数或析构函数中调用虚函数，则运行的是为构造函数或析构函数自身类型定义的版本；
 
 3) 因为父类对象会在子类之前进行构造，此时子类部分的数据成员还未初始化，因此调用子类的虚函数时不安全的，故而C++不会进行动态联编；
 
 4) 析构函数是用来销毁一个对象的，在销毁一个对象时，先调用子类的析构函数，然后再调用基类的析构函数。所以在调用基类的析构函数时，派生类对象的数据成员已经销毁，这个时候再调用子类的虚函数没有任何意义。
-
-### 浅拷贝和深拷贝的区别
-
-**浅拷贝**
-
-浅拷贝只是拷贝一个指针，并没有新开辟一个地址，拷贝的指针和原来的指针指向同一块地址，如果原来的指针所指向的资源释放了，那么再释放浅拷贝的指针的资源就会出现错误。
-
-**深拷贝**
-
-深拷贝不仅拷贝值，还开辟出一块新的空间用来存放新的值，即使原先的对象被析构掉，释放内存了也不会影响到深拷贝得到的值。在自己实现拷贝赋值的时候，如果有指针变量的话是需要自己实现深拷贝的。
-
-```C++
-#include <iostream>  
-#include <string.h>
-using namespace std;
- 
-class Student
-{
-private:
-	int num;
-	char *name;
-public:
-	Student(){
-        name = new char(20);
-		cout << "Student" << endl;
-    };
-	~Student(){
-        cout << "~Student " << &name << endl;
-        delete name;
-        name = NULL;
-    };
-	Student(const Student &s){//拷贝构造函数
-        //浅拷贝，当对象的name和传入对象的name指向相同的地址
-        name = s.name;
-        //深拷贝
-        //name = new char(20);
-        //memcpy(name, s.name, strlen(s.name));
-        cout << "copy Student" << endl;
-    };
-};
- 
-int main()
-{
-	{// 花括号让s1和s2变成局部对象，方便测试
-		Student s1;
-		Student s2(s1);// 复制对象
-	}
-	system("pause");
-	return 0;
-}
-//浅拷贝执行结果：
-//Student
-//copy Student
-//~Student 0x7fffed0c3ec0
-//~Student 0x7fffed0c3ed0
-//*** Error in `/tmp/815453382/a.out': double free or corruption (fasttop): 0x0000000001c82c20 ***
-
-//深拷贝执行结果：
-//Student
-//copy Student
-//~Student 0x7fffebca9fb0
-//~Student 0x7fffebca9fc0
-
-
-```
-
-从执行结果可以看出，浅拷贝在对象的拷贝创建时存在风险，即被拷贝的对象析构释放资源之后，拷贝对象析构时会再次释放一个已经释放的资源，深拷贝的结果是两个对象之间没有任何关系，各自成员地址不同。
-
-### 构造函数中的default和delete
-
-**default**
-
-default关键字可以显式要求编译器生成合成构造函数，防止在调用时相关构造函数类型没有定义而报错
-
-```C++
-#include <iostream>
-using namespace std;
-
-class CString
-{
-public:
-    CString() = default; //语句1
-    //构造函数
-    CString(const char* pstr) : _str(pstr){}
-    void* operator new() = delete;//这样不允许使用new关键字
-    //析构函数
-    ~CString(){}
-public:
-     string _str;
-};
-
-
-int main()
-{
-   auto a = new CString(); //语句2
-   cout << "Hello World" <<endl;
-   return 0;
-}
-//运行结果
-//Hello World
-```
-
-如果没有加语句1，语句2会报错，表示找不到参数为空的构造函数，将其设置为default可以解决这个问题
-
-**delete**
-
-delete关键字可以删除构造函数、赋值运算符函数等，这样在使用的时候会得到友善的提示
-
-```C++
-#include <iostream>
-using namespace std;
-
-class CString
-{
-public:
-    void* operator new() = delete;//这样不允许使用new关键字
-    //析构函数
-    ~CString(){}
-};
-
-
-int main()
-{
-   auto a = new CString(); //语句1
-   cout << "Hello World" <<endl;
-   return 0;
-}
-```
-
-在执行语句1时，会提示new方法已经被删除，如果将new设置为私有方法，则会报惨不忍睹的错误，因此使用delete关键字可以更加人性化的删除一些默认方法
 
 ### 抽象类、接口类、聚合类
 
@@ -1071,11 +976,10 @@ int main()
 3、 需要在 new [] 一个对象数组时，需要保存数组的维度，C++ 的做法是在分配数组空间时多分配了 4 个字节的大小，专门保存数组的大小，在 delete [] 时就可以取出这个保存的数，就知道了需要调用析构函数多少次了。
 
 ```cpp
-int main()
-{
-    T* t = new T();     // 先内存分配 ，再构造函数
-    delete t;           // 先析构函数，再内存释放
-    return 0;
+int main() {
+  T *t = new T(); // 先内存分配 ，再构造函数
+  delete t;       // 先析构函数，再内存释放
+  return 0;
 }
 ```
 
@@ -1093,23 +997,16 @@ void operator delete(void *) throw();
 因此**plain new**在空间分配失败的情况下，抛出异常**std::bad_alloc**而不是返回NULL，因此通过判断返回值是否为NULL是徒劳的，举个例子：
 
 ```C++
-#include <iostream>
-#include <string>
-using namespace std;
-int main()
-{
-	try
-	{
-		char *p = new char[10e11];
-		delete p;
-	}
-	catch (const std::bad_alloc &ex)
-	{
-		cout << ex.what() << endl;
-	}
-	return 0;
+int main() {
+  try {
+    char *p = new char[10e11];
+    delete p;
+  } catch (const std::bad_alloc &ex) {
+    cout << ex.what() << endl;
+  }
+  return 0;
 }
-//执行结果：bad allocation
+// 执行结果：bad allocation
 ```
 
 （2）**nothrow new**
@@ -1124,21 +1021,15 @@ void operator delete(void*) throw();
 举个例子：
 
 ```C++
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-	char *p = new(nothrow) char[10e11];
-	if (p == NULL) 
-	{
-		cout << "alloc failed" << endl;
-	}
-	delete p;
-	return 0;
+int main() {
+  char *p = new (nothrow) char[10e11];
+  if (p == NULL) {
+    cout << "alloc failed" << endl;
+  }
+  delete p;
+  return 0;
 }
-//运行结果：alloc failed
+// 运行结果：alloc failed
 ```
 
 （3）**placement new**
@@ -1159,37 +1050,32 @@ void operator delete(void*,void*);
 举个例子：
 
 ```C++
-#include <iostream>
-#include <string>
-using namespace std;
-class ADT{
-	int i;
-	int j;
+class ADT {
+  int i;
+  int j;
+
 public:
-	ADT(){
-		i = 10;
-		j = 100;
-		cout << "ADT construct i=" << i << "j="<<j <<endl;
-	}
-	~ADT(){
-		cout << "ADT destruct" << endl;
-	}
+  ADT() {
+    i = 10;
+    j = 100;
+    cout << "ADT construct i=" << i << ", j=" << j << endl;
+  }
+  ~ADT() { cout << "ADT destruct" << endl; }
 };
-int main()
-{
-	char *p = new(nothrow) char[sizeof ADT + 1];
-	if (p == NULL) {
-		cout << "alloc failed" << endl;
-	}
-	ADT *q = new(p) ADT;  //placement new:不必担心失败，只要p所指对象的的空间足够ADT创建即可
-	//delete q;//错误!不能在此处调用delete q;
-	q->ADT::~ADT();//显示调用析构函数
-	delete[] p;
-	return 0;
+int main() {
+  char *p = new (nothrow) char[sizeof(ADT) + 1];
+  if (p == NULL) {
+    cout << "alloc failed" << endl;
+  }
+  ADT *q = new (p) ADT; // placement new:不必担心失败，只要p所指对象的的空间足够ADT创建即可
+  // delete q; // 错误!不能在此处调用delete q;
+  q->ADT::~ADT(); // 显示调用析构函数
+  delete[] p;
+  return 0;
 }
-//输出结果：
-//ADT construct i=10j=100
-//ADT destruct
+// 输出结果：
+// ADT construct i=10j=100
+// ADT destruct
 ```
 
 **delete this 合法吗？**
@@ -1198,13 +1084,11 @@ int main()
 
 1. 必须保证 this 对象是通过 `new`（不是 `new[]`、不是 placement new、不是栈上、不是全局、不是其他对象成员）分配的
 2. 必须保证调用 `delete this` 的成员函数是最后一个调用 this 的成员函数
-3. 必须保证成员函数的 `delete this ` 后面没有调用 this 了
-4. 必须保证 `delete this` 后没有人使用了
 5. 析构函数中调用delete this 会导致无限递归，堆栈溢出
 
 ### C++中NULL和nullptr区别
 
-算是为了与C语言进行兼容而定义的一个问题吧，NULL来自C语言，一般由宏定义实现，而 nullptr 则是C++11的新增关键字。**在C语言中，NULL被定义为(void*)0,而在C++语言中，NULL则被定义为整数0**。编译器一般对其实际定义如下：
+算是为了与C语言进行兼容而定义的一个问题吧，NULL来自C语言，一般由宏定义实现，而 nullptr 则是C++11的新增关键字。**在Win平台，NULL被定义为(void*)0,而在C++语言中，NULL则被定义为整数0**。编译器一般对其实际定义如下：
 
 ```C++
 #ifdef __cplusplus
@@ -1218,23 +1102,15 @@ int main()
 在C++中指针必须有明确的类型定义。但是将NULL定义为0带来的另一个问题是无法与整数的0区分。因为C++中允许有函数重载，所以可以试想如下函数定义情况：
 
 ```C++
-#include <iostream>
-using namespace std;
+void fun(char *p) { cout << "char*" << endl; }
 
-void fun(char* p) {
-	cout << "char*" << endl;
-}
+void fun(int p) { cout << "int" << endl; }
 
-void fun(int p) {
-	cout << "int" << endl;
+int main() {
+  fun(NULL);
+  return 0;
 }
-
-int main()
-{
-	fun(NULL);
-	return 0;
-}
-//输出结果：int
+// 输出结果：int
 ```
 
 那么**在传入NULL参数时，会把NULL当做整数0来看，如果我们想调用参数是指针的函数，该怎么办呢?。nullptr在C++11被引入用于解决这一问题，nullptr可以明确区分整型和指针类型，能够根据环境自动转换成相应的指针类型，但不会被转换为任何整型，所以不会造成参数传递错误。**
@@ -1242,12 +1118,19 @@ int main()
 nullptr的一种实现方式如下：
 
 ```C++
-const class nullptr_t{
+const class nullptr_t {
 public:
-    template<class T>  inline operator T*() const{ return 0; }
-    template<class C, class T> inline operator T C::*() const { return 0; }
+  template <class T>
+  inline operator T *() const {
+    return 0;
+  }
+  template <class C, class T>
+  inline operator T C::*() const {
+    return 0;
+  }
+
 private:
-    void operator&() const;
+  void operator&() const;
 } nullptr = {};
 ```
 
@@ -1255,33 +1138,19 @@ private:
 以上通过模板类和运算符重载的方式来对不同类型的指针进行实例化从而解决了(void*)指针带来参数类型不明的问题，**另外由于nullptr是明确的指针类型，所以不会与整形变量相混淆。**但nullptr仍然存在一定问题，例如：
 
 ```C++
-#include <iostream>
-using namespace std;
+void fun(char *p) { cout << "char* p" << endl; }
+void fun(int *p) { cout << "int* p" << endl; }
 
-void fun(char* p)
-{
-	cout<< "char* p" <<endl;
+void fun(int p) { cout << "int p" << endl; }
+int main() {
+  fun((char *)nullptr); // 语句1
+  fun(nullptr);         // 语句2
+  fun(NULL);            // 语句3
+  return 0;
 }
-void fun(int* p)
-{
-	cout<< "int* p" <<endl;
-}
-
-void fun(int p)
-{
-	cout<< "int p" <<endl;
-}
-int main()
-{
-    fun((char*)nullptr);//语句1
-	fun(nullptr);//语句2
-    fun(NULL);//语句3
-    return 0;
-}
-//运行结果：
-//语句1：char* p
-//语句2:报错，有多个匹配
-//语句3：int p
+// 语句1：char* p
+// 语句2:报错，有多个匹配
+// 语句3：int p
 ```
 
 在这种情况下存在对不同指针类型的函数重载，此时如果传入nullptr指针则仍然存在无法区分应实际调用哪个函数，这种情况下必须显示的指明参数类型。
@@ -1308,19 +1177,7 @@ int main()
 
 如果进线程无法取得锁，进线程不会立刻放弃CPU时间片，而是一直循环尝试获取锁，直到获取为止。如果别的线程长时期占有锁那么自旋就是在浪费CPU做无用功，但是自旋锁一般应用于加锁时间很短的场景，这个时候效率比较高。
 
-### 如何定义一个只能在堆上（栈上）生成对象的类？
 
-**只能在堆上**
-
-方法：==将析构函数设置为私有==
-
-原因：C++ 是静态绑定语言，编译器管理栈上对象的生命周期，编译器在为类对象分配栈空间时，会先检查类的析构函数的访问性。若析构函数不可访问，则不能在栈上创建对象。
-
-**只能在栈上**
-
-方法：将 new 和 delete 重载为私有
-
-原因：在堆上生成对象，使用 new 关键词操作，其过程分为两阶段：第一阶段，使用 new 在堆上寻找可用内存，分配给对象；第二阶段，调用构造函数生成对象。将 new 操作设置为私有，那么第一阶段就无法完成，就不能够在堆上生成对象。
 
 ### 智能指针
 
@@ -1537,48 +1394,6 @@ C++中的内存分区，分别是堆、栈、自由存储区、全局/静态存�
 | **分配方式**     | 堆都是动态分配（没有静态分配的堆）                           | 栈有静态分配和动态分配，静态分配由编译器完成（如局部变量分配），动态分配由malloc函数分配，但栈的动态分配的资源由编译器进行释放，无需程序员实现。 |
 | **分配效率**     | 堆由C/C++函数库提供，机制很复杂。所以堆的效率比栈低很多。    | 栈是其系统提供的数据结构，计算机在底层对栈提供支持，分配专门寄存器存放栈地址，栈操作有专门指令。 |
 
-### 类成员初始化方式？构造函数的执行顺序 ？为什么用成员初始化列表会快一些？
-
-1)  赋值初始化，通过在函数体内进行赋值初始化；
-
-​	列表初始化，在冒号后使用初始化列表进行初始化。
-
-**这两种方式的主要区别在于：**
-
-对于在函数体中初始化,是在所有的数据成员被分配内存空间后才进行的。
-
-列表初始化是给数据成员分配内存空间时就进行初始化,就是说分配一个数据成员只要冒号后有此数据成员的赋值表达式(此表达式必须是括号赋值表达式),那么分配了内存空间后在进入函数体之前给数据成员赋值，就是说初始化这个数据成员此时函数体还未执行。 
-
-2)  一个派生类构造函数的执行顺序如下：
-
-①   虚拟基类的构造函数（多个虚拟基类则按照继承的顺序执行构造函数）。
-
-②   基类的构造函数（多个普通基类也按照继承的顺序执行构造函数）。
-
-③   类类型的成员对象的构造函数（按照初始化顺序）
-
-④   派生类自己的构造函数。
-
-3)  方法一是在构造函数当中做赋值的操作，而方法二是做纯粹的初始化操作，多了一次调用构造函数的过程。我们都知道，C++的赋值操作是会产生临时对象的。临时对象的出现会降低程序的效率。
-
-### 哪几种情况必须用到初始化成员列表？
-
-**必须使用成员初始化的四种情况**
-
-* 当初始化一个引用成员时；
-
-* 当初始化一个常量成员时；
-
-* 当调用一个基类的构造函数，而它拥有一组参数时；
-
-* 当调用一个成员类的构造函数，而它拥有一组参数时；
-
-**成员初始化列表做了什么**
-
-* 编译器会一一操作初始化列表，以适当的顺序在构造函数之内安插初始化操作，并且在任何显示用户代码之前；
-
-* list中的项目顺序是由类中的成员声明顺序决定的，不是由初始化列表的顺序决定的；
-
 ### C和C++的类型安全
 
  **什么是类型安全？**
@@ -1779,54 +1594,11 @@ const int* f = &e; // f是底层const
 decltype(auto) j = f;//j的类型是const int* 并且指向的是e
 ```
 
-### public，protected和private详解
 
-- public的变量和函数在类的内部外部都可以访问。
-
-- protected的变量和函数只能在类的内部和其派生类中访问。
-
-- private修饰的元素只能在类内访问。
-
-（一）访问权限
-
-派生类可以继承基类中除了==构造/析构、赋值运算符重载函数之外的成员==，但是这些成员的访问属性在派生过程中也是可以调整的，三种派生方式的访问权限如下表所示：注意外部访问并不是真正的外部访问，而是在通过派生类的对象对基类成员的访问。
-
-![](https://cdn.jsdelivr.net/gh/forthespada/mediaImage1@1.6.3.4/202102/1564132255040.png)
-
-派生类对基类成员的访问形象有如下两种：
-
-- 内部访问：由派生类中新增的成员函数对从基类继承来的成员的访问
-- **外部访问**：在派生类外部，通过派生类的对象对从基类继承来的成员的访问
-
-（二）继承权限
-
-**public继承**
-
-公有继承的特点是基类的公有成员和保护成员作为派生类的成员时，都保持原有的状态，而基类的私有成员任然是私有的，不能被这个派生类的子类所访问
-
-**protected继承**
-
-保护继承的特点是基类的所有公有成员和保护成员都成为派生类的保护成员，并且只能被它的派生类成员函数或友元函数访问，基类的私有成员仍然是私有的，访问规则如下表
-
-![](https://cdn.jsdelivr.net/gh/forthespada/mediaImage1@1.6.3.4/202102/1564132983494.png)
-
-**private继承**
-
-私有继承的特点是基类的所有公有成员和保护成员都成为派生类的私有成员，并不被它的派生类的子类所访问，基类的成员只能由自己派生类访问，无法再往下继承，访问规则如下表
-
-![](https://cdn.jsdelivr.net/gh/forthespada/mediaImage1@1.6.3.4/202102/1564132983494.png)
-
-### Effective C++
-
-// 待完善
-
-### More Effective C++
-
-// 待完善
 
 ***
 
-### 二、C++2.0
+## 二、C++2.0
 
 ***
 
@@ -3070,7 +2842,7 @@ map支持键值的自动排序，底层机制是红黑树，红黑树的查询�
 
 ***
 
-### 三、STL
+## 三、STL
 
 ***
 
@@ -3108,7 +2880,7 @@ map支持键值的自动排序，底层机制是红黑树，红黑树的查询�
 
 ***
 
-### 四、C++程序静态库和动态库
+## 四、C++程序静态库和动态库
 
 ***
 
@@ -3208,3 +2980,4 @@ map支持键值的自动排序，底层机制是红黑树，红黑树的查询�
 | ...              | ...                   |
 
 ### 4.3 [C++静态库和动态库详解](https://blog.csdn.net/weixin_42482896/article/details/95654355)
+
