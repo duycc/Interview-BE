@@ -16,7 +16,6 @@
 
 该仓库内容大多不是原创，更多是从其它人的一些开源面试仓库及自己的面试经验总结而来，形成适合自己的复习笔记，主要参考仓库：
 
-* **[阿秀的校招笔记](https://github.com/forthespada/InterviewGuide)**
-
-* **[CodingInterviewsNotes](https://github.com/yzhu798/CodingInterviewsNotes)**
+> * **[阿秀的校招笔记](https://github.com/forthespada/InterviewGuide)**
+> * **[CodingInterviewsNotes](https://github.com/yzhu798/CodingInterviewsNotes)**
 
