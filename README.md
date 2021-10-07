@@ -7,10 +7,10 @@
 * **[数据结构和算法](https://github.com/duycc/data-structure-and-algorithm)**
 * **[计算机网络](计算机网络.md)**
 * **[操作系统](操作系统.md)**
-* **[数据库（Redis，MySQL）](数据库（Redis，MySQL）.md)**
+* **[MySQL，Redis](MySQL，Redis.md)**
 * **[设计模式](https://github.com/duycc/DesignPattern)**
 * **[LeetCode](https://github.com/duycc/leetcode)**
-* **[智力&情景题](智力&情景题.md)**
+* **[智力，情景题](智力，情景题.md)**
 
 ***
 
