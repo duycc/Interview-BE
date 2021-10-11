@@ -4,7 +4,7 @@
 
 
 * **[C++基础，C++2.0，STL](C++基础，C++2.0，STL.md)**
-* **[数据结构和算法](https://github.com/duycc/data-structure-and-algorithm)**
+* **[数据结构和算法](https://github.com/duycc/tinyDTL)**
 * **[计算机网络](计算机网络.md)**
 * **[操作系统](操作系统.md)**
 * **[MySQL，Redis](MySQL，Redis.md)**
