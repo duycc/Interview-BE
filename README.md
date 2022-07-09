@@ -20,6 +20,3 @@
 > * **[CodingInterviewsNotes](https://github.com/yzhu798/CodingInterviewsNotes)**
 
 
-
-秋招需要过一遍：[C++那些事](https://github.com/Light-City/CPlusPlusThings)
-
