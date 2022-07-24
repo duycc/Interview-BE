@@ -17,19 +17,19 @@ class Singleton {
     static void CreateInstance() { m_instance = new Singleton(); }
 
   private:
-    static Singleton* m_instance;
+    static Singleton *m_instance;
     std::mutex m_mtx;
 
   public:
-    static Singleton* GetInstance();
+    static Singleton *GetInstance();
 
   private:
     Singleton() {}
 };
 
-Singleton* Singleton::m_instance = nullptr;
+Singleton *Singleton::m_instance = nullptr;
 
-Singleton* Singleton::GetInstance() {
+Singleton *Singleton::GetInstance() {
     // if (m_instance == nullptr) {
     //     std::unique_lock<std::mutex> mtx(m_mtx);
     //     if (m_instance == nullptr) {
@@ -41,7 +41,8 @@ Singleton* Singleton::GetInstance() {
 }
 
 int main() {
-    Singleton* ps = Singleton::GetInstance();
+    // Singleton *ps = Singleton::GetInstance();
+    cout << "hwllo world" << endl;
 
     return 0;
 }
