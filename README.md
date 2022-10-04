@@ -1,22 +1,26 @@
-### Linux C++后台开发面试总结：
-
+### 后端开发工程师面试指南
 ***
+#### 编程语言
+* [C++](C++.md)
+* [Python](Python.md)
 
+* [Golang](Golang.md)
 
-* **[C++基础，C++2.0，STL](C++基础，C++2.0，STL.md)**
-* **[数据结构和算法](https://github.com/duycc/tinyDTL)**
-* **[计算机网络](计算机网络.md)**
-* **[操作系统](操作系统.md)**
-* **[MySQL，Redis](MySQL，Redis.md)**
-* **[设计模式](https://github.com/duycc/DesignPattern)**
-* **[LeetCode](https://github.com/duycc/leetcode)**
-* **[智力，情景题](智力，情景题.md)**
+#### 基础知识
+* [数据结构和算法](https://github.com/duycc/tinyDTL)
+* [操作系统](操作系统.md)
+* [计算机网络](计算机网络.md)
 
-***
+* [LeetCode](https://github.com/duycc/leetcode)
 
-该仓库内容大多不是原创，更多是从其它人的一些开源面试仓库及自己的面试经验总结而来，形成适合自己的复习笔记，主要参考仓库：
+#### Linux管理和编程
 
-> * **[阿秀的校招笔记](https://github.com/forthespada/InterviewGuide)**
-> * **[CodingInterviewsNotes](https://github.com/yzhu798/CodingInterviewsNotes)**
+* [Linux](Linux.md)
+#### 数据存储
+* [MySQL](MySQL.md)
+* [Redis](Redis.md)
+#### 消息队列
+* [Kafka](Kafka.md)
+#### 软件工程与架构
 
-
+* [设计模式](https://github.com/duycc/DesignPattern)
